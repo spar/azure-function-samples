@@ -15,33 +15,38 @@ namespace AzureFuncSampels
 {
     public static class FakeRest
     {
-        private static readonly IEnumerable<User> Users;
+        private static IEnumerable<User> _users;
 
-        static FakeRest()
+        private static void InitUsers(ExecutionContext context)
         {
-            Users = JsonConvert.DeserializeObject<IEnumerable<User>>(File.ReadAllText("Users.json"));
+            if (_users != null) return;
+            var path = Path.Combine(context.FunctionAppDirectory, "Users.json");
+            _users = JsonConvert.DeserializeObject<IEnumerable<User>>(File.ReadAllText(path));
         }
 
         [FunctionName("FakeRestUserGetAll")]
         public static IActionResult UserGetAll([HttpTrigger(AuthorizationLevel.Anonymous, "get"
-            , Route = "fakerest/users")]HttpRequest req, TraceWriter log)
+            , Route = "fakerest/users")]HttpRequest req, TraceWriter log, ExecutionContext context)
         {
-            return new OkObjectResult(Users);
+            InitUsers(context);
+            return new OkObjectResult(_users);
         }
 
         [FunctionName("FakeRestUserGet")]
         public static IActionResult UserGet([HttpTrigger(AuthorizationLevel.Anonymous, "get"
-            , Route = "fakerest/user/{id=id}")]HttpRequest req, int id, TraceWriter log)
+            , Route = "fakerest/user/{id=id}")]HttpRequest req, int id, TraceWriter log, ExecutionContext context)
         {
-            return new OkObjectResult(Users?.FirstOrDefault(x => x.Id == id));
+            InitUsers(context);
+            return new OkObjectResult(_users?.FirstOrDefault(x => x.Id == id));
         }
 
         [FunctionName("FakeRestUserCreate")]
         public static IActionResult UserCreate([HttpTrigger(AuthorizationLevel.Anonymous, "post"
-            , Route = "fakerest/user")]HttpRequest req, TraceWriter log)
+            , Route = "fakerest/user")]HttpRequest req, TraceWriter log, ExecutionContext context)
         {
             try
             {
+                InitUsers(context);
                 var reader = new StreamReader(req.Body, Encoding.UTF8);
                 var user = JsonConvert.DeserializeObject<User>(reader.ReadToEnd());
                 return new OkObjectResult(user);
@@ -54,13 +59,14 @@ namespace AzureFuncSampels
 
         [FunctionName("FakeRestUserUpdate")]
         public static IActionResult UserUpdate([HttpTrigger(AuthorizationLevel.Anonymous, "put"
-            , Route = "fakerest/user")]HttpRequest req, TraceWriter log)
+            , Route = "fakerest/user")]HttpRequest req, TraceWriter log, ExecutionContext context)
         {
             try
             {
+                InitUsers(context);
                 var reader = new StreamReader(req.Body, Encoding.UTF8);
                 var user = JsonConvert.DeserializeObject<User>(reader.ReadToEnd());
-                if (Users.Any(x => x.Id == user?.Id))
+                if (_users.Any(x => x.Id == user?.Id))
                     return new OkObjectResult(user);
                 return new NotFoundObjectResult(user);
             }
