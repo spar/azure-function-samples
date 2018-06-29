@@ -1,4 +1,4 @@
-﻿namespace AzureFuncSampels.Models
+﻿namespace AzureFuncSamples.Models
 {
     public class User : BaseClass
     {

@@ -1,4 +1,4 @@
-﻿namespace AzureFuncSampels.Models
+﻿namespace AzureFuncSamples.Models
 {
     public abstract class BaseClass
     {
