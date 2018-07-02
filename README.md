@@ -14,3 +14,6 @@
 
 ### Wikipedia Search
 - [GET](https://azurefunctionsamples.azurewebsites.net/api/wikipedia/GitHub)
+
+### Weather
+- [GET Melbourne](https://azurefunctionsamples.azurewebsites.net/api/weather/Melbourne)
