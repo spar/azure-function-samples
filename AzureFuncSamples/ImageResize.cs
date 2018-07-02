@@ -42,11 +42,16 @@ namespace AzureFuncSamples
 
         private static byte[] GenerateThumbnail(Stream imageStream, int resizeByPercentage)
         {
-            var image = Image.Load(imageStream);
-            image.Mutate(x => x.Resize((image.Width * resizeByPercentage) / 100, (image.Height * resizeByPercentage) / 100));
-            var returnImageStream = new MemoryStream();
-            image.Save(returnImageStream, new JpegEncoder());
-            return returnImageStream.ToArray();
+            using (var image = Image.Load(imageStream))
+            {
+                image.Mutate(x =>
+                    x.Resize((image.Width * resizeByPercentage) / 100, (image.Height * resizeByPercentage) / 100));
+                using (var returnImageStream = new MemoryStream())
+                {
+                    image.Save(returnImageStream, new JpegEncoder());
+                    return returnImageStream.ToArray();
+                }
+            }
         }
     }
 }
