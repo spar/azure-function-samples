@@ -21,6 +21,6 @@
 ### Image Resize
 - [Sample Image](https://azurefunctionsamples.azurewebsites.net/api/imageresize/orig-sample)
 - [Sample Image Resize down to 50%](https://azurefunctionsamples.azurewebsites.net/api/imageresize/thumb-sample/50)
-- Actual Endpoint is a POST which expects a binary image file and a parameter percentage to which it will scale image to.
--- Example: POST image to https://azurefunctionsamples.azurewebsites.net/api/imageresize/50
+- Resize by Percentage - Actual Endpoint is a POST which expects a binary image file and a parameter percentage to which it will scale image to. Example: POST image to https://azurefunctionsamples.azurewebsites.net/api/imageresize/50
+- Resize by Width/Height - Actual Endpoint is a POST which expects a binary image file and width/height to which it will scale image to. Example: POST image to https://azurefunctionsamples.azurewebsites.net/api/imageresize/100/100
 
