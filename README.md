@@ -15,8 +15,12 @@
 ### Wikipedia Search
 - [GET](https://azurefunctionsamples.azurewebsites.net/api/wikipedia/GitHub)
 
+### Weather
+- [GET Melbourne](https://azurefunctionsamples.azurewebsites.net/api/weather/Melbourne)
+
 ### Image Resize
 - [Sample Image](https://azurefunctionsamples.azurewebsites.net/api/imageresize/orig-sample)
 - [Sample Image Resize down to 50%](https://azurefunctionsamples.azurewebsites.net/api/imageresize/thumb-sample/50)
 - Actual Endpoint is a POST which expects a binary image file and a parameter percentage to which it will scale image to.
 -- Example: POST image to https://azurefunctionsamples.azurewebsites.net/api/imageresize/50
+
