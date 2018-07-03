@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "a3146ae1-0607-4ea0-90ec-19521ed5cabe",
+		"name": "AzureFunctionSamples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FakeRest",
+			"description": "",
+			"item": [
+				{
+					"name": "FakeRest Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/fakerest/users",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"fakerest",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FakeRest User Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/fakerest/user/1",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"fakerest",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FakeRest User Create (Post)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1,\r\n    \"FirstName\": \"Jaye\",\r\n    \"LastName\": \"Tumility\",\r\n    \"Email\": \"jtumility0@nature.com\",\r\n    \"Gender\": \"Male\",\r\n    \"Avatar\": \"https://robohash.org/velcommodisoluta.jpg?size=150x150&set=set1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{env}}/api/fakerest/user",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"fakerest",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FakeRest User Update(Put)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": 1,\r\n    \"FirstName\": \"Jaye\",\r\n    \"LastName\": \"Tumility\",\r\n    \"Email\": \"jtumility0@nature.com\",\r\n    \"Gender\": \"Male\",\r\n    \"Avatar\": \"https://robohash.org/velcommodisoluta.jpg?size=150x150&set=set1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{env}}/api/fakerest/user",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"fakerest",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Random",
+			"description": "",
+			"item": [
+				{
+					"name": "Random Int",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/random/int",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"random",
+								"int"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Random Double",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/random/double",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"random",
+								"double"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Random Char",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/random/char",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"random",
+								"char"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wikipedia",
+			"description": "",
+			"item": [
+				{
+					"name": "Wikipedia Get Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/wikipedia/Wikipedia",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"wikipedia",
+								"Wikipedia"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Weather",
+			"description": "",
+			"item": [
+				{
+					"name": "Weather",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/weather/Adelaide",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"weather",
+								"Adelaide"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ImageResize",
+			"description": "",
+			"item": [
+				{
+					"name": "ImageResize",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{env}}/api/imageresize/10",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"imageresize",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImageResize Original Sample",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{env}}/api/imageresize/orig-sample",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"imageresize",
+								"orig-sample"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImageResize Thumb Sample",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{env}}/api/imageresize/thumb-sample/30",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"imageresize",
+								"thumb-sample",
+								"30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImageResize Width Height",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{env}}/api/imageresize/960/544",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"imageresize",
+								"960",
+								"544"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ImageResize Avatar Width Height Radius",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "{{env}}/api/imageresize/avatar/50/50/27",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"imageresize",
+								"avatar",
+								"50",
+								"50",
+								"27"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Epoch Convert",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{env}}/api/epoch-convert/1530248169000",
+					"host": [
+						"{{env}}"
+					],
+					"path": [
+						"api",
+						"epoch-convert",
+						"1530248169000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
