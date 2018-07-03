@@ -5,14 +5,11 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Jpeg;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Processing.Transforms;
+using Path = System.IO.Path;
 
-namespace AzureFuncSamples
+namespace AzureFuncSamples.ImageResize
 {
-    public static class ImageResize
+    public static class ImageResizer
     {
         [FunctionName("ImageResizeByPercentage")]
         public static IActionResult ImageResizeByPercentage([HttpTrigger(AuthorizationLevel.Anonymous, "post"
@@ -20,7 +17,7 @@ namespace AzureFuncSamples
         {
             if (percent >= 100 | percent < 1)
                 return new BadRequestObjectResult("Percentage value must be less than 100 and greater than 0");
-            return new FileContentResult(GenerateThumbnailByPercentage(req.Body, percent), "image/jpeg");
+            return new FileContentResult(ImageResizeFunctions.GenerateThumbnailByPercentage(req.Body, percent), "image/jpeg");
         }
 
         [FunctionName("ImageResizeByWidthHeight")]
@@ -31,7 +28,7 @@ namespace AzureFuncSamples
             {
                 if ((w <= 0 || w > imageStream.Width) || (h <= 0 || h > imageStream.Height))
                     return new BadRequestObjectResult("Provide proper width and height");
-                return new FileContentResult(GenerateThumbnailByWidthHeight(imageStream, w, h), "image/jpeg");
+                return new FileContentResult(ImageResizeFunctions.GenerateThumbnailByWidthHeight(imageStream, w, h), "image/jpeg");
             }
         }
 
@@ -50,30 +47,18 @@ namespace AzureFuncSamples
             if (percent >= 100 | percent < 1)
                 return new BadRequestObjectResult("Percentage value must be less than 100 and greater than 0");
             var sample = File.ReadAllBytes(Path.Combine(context.FunctionAppDirectory, "Images", "Whale_shark_Georgia_aquarium.jpg"));
-            return new FileContentResult(GenerateThumbnailByPercentage(new MemoryStream(sample), percent), "image/jpeg");
+            return new FileContentResult(ImageResizeFunctions.GenerateThumbnailByPercentage(new MemoryStream(sample), percent), "image/jpeg");
         }
 
-        private static byte[] GenerateThumbnailByPercentage(Stream imageStream, int resizeByPercentage)
+        [FunctionName("ImageResizeAvatar")]
+        public static IActionResult ImageResizeAvatar([HttpTrigger(AuthorizationLevel.Anonymous, "post"
+            , Route = "imageresize/avatar/{w=w}/{h=h}/{r=r}")]HttpRequest req, int w, int h, float r, TraceWriter log)
         {
-            using (var image = Image.Load(imageStream))
+            using (var imageStream = Image.Load(req.Body))
             {
-                image.Mutate(x =>
-                    x.Resize((image.Width * resizeByPercentage) / 100, (image.Height * resizeByPercentage) / 100));
-                using (var returnImageStream = new MemoryStream())
-                {
-                    image.Save(returnImageStream, new JpegEncoder());
-                    return returnImageStream.ToArray();
-                }
-            }
-        }
-
-        private static byte[] GenerateThumbnailByWidthHeight(Image<Rgba32> image, int w, int h)
-        {
-            image.Mutate(x => x.Resize(w, h));
-            using (var returnImageStream = new MemoryStream())
-            {
-                image.Save(returnImageStream, new JpegEncoder());
-                return returnImageStream.ToArray();
+                if ((w <= 0 || w > imageStream.Width) || (h <= 0 || h > imageStream.Height))
+                    return new BadRequestObjectResult("Provide proper width and height");
+                return new FileContentResult(ImageResizeFunctions.GenerateAvatar(imageStream, w, h, r), "image/png");
             }
         }
     }

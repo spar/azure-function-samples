@@ -23,4 +23,5 @@
 - [Sample Image Resize down to 50%](https://azurefunctionsamples.azurewebsites.net/api/imageresize/thumb-sample/50)
 - Resize by Percentage - Actual Endpoint is a POST which expects a binary image file and a parameter percentage to which it will scale image to. Example: POST image to https://azurefunctionsamples.azurewebsites.net/api/imageresize/50
 - Resize by Width/Height - Actual Endpoint is a POST which expects a binary image file and width/height to which it will scale image to. Example: POST image to https://azurefunctionsamples.azurewebsites.net/api/imageresize/100/100
+- Generate Rounded Avatar - POST request that expects width,height and a radius [Avatar] (https://azurefunctionsamples.azurewebsites.net/api/imageresize/avatar/100/100/20)
 
