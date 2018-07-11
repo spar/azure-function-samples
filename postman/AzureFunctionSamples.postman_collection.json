@@ -105,6 +105,27 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "FakeRest Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{env}}/api/fakerest/user/1",
+							"host": [
+								"{{env}}"
+							],
+							"path": [
+								"api",
+								"fakerest",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
